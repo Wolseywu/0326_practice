@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🐾 狗狗年齡換算器</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Fredoka+One&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="bg-paws" aria-hidden="true"></div>
+
+  <main class="container">
+
+    <header class="hero">
+      <div class="dog-icon">🐶</div>
+      <h1>狗狗年齡換算器</h1>
+      <p class="subtitle">輸入毛孩的生日，看看牠相當於幾歲的人類！</p>
+    </header>
+
+    <section class="card">
+      <div class="form-group">
+        <label for="birthdate">🎂 狗狗的出生年月日</label>
+        <input
+          type="date"
+          id="birthdate"
+          name="birthdate"
+          max=""
+        />
+        <span class="input-hint">請選擇狗狗的出生日期</span>
+      </div>
+
+      <button class="btn-calc" id="calcBtn" onclick="calculate()">
+        <span class="btn-icon">🐾</span>
+        開始換算
+      </button>
+
+      <div class="result-box" id="resultBox" aria-live="polite">
+        <div class="result-row">
+          <div class="result-item">
+            <span class="result-label">🐕 狗狗實際年齡</span>
+            <span class="result-value" id="dogAge">—</span>
+            <span class="result-unit" id="dogAgeUnit"></span>
+          </div>
+          <div class="divider-dot">•</div>
+          <div class="result-item">
+            <span class="result-label">🧑 換算人類年齡</span>
+            <span class="result-value" id="humanAge">—</span>
+            <span class="result-unit" id="humanAgeUnit"></span>
+          </div>
+        </div>
+        <p class="result-desc" id="resultDesc"></p>
+      </div>
+
+      <p class="error-msg" id="errorMsg" role="alert"></p>
+    </section>
+
+    <footer class="footer">
+      <p>換算公式：人類年齡 = 16 × ln(狗狗年齡) + 31</p>
+      <p class="footer-note">參考自 <em>Cell Systems</em> 科學研究</p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
