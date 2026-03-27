@@ -337,6 +337,14 @@ h1 {
   font-style: italic;
 }
 
+.footer-changelog {
+  margin-top: 24px;
+  padding-top: 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
 /* ===== RWD ===== */
 @media (max-width: 400px) {
   .card {

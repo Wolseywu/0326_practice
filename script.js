@@ -7,6 +7,29 @@
   document.getElementById('birthdate').setAttribute('max', `${yyyy}-${mm}-${dd}`);
 })();
 
+// ===== [localStorage] 頁面載入時自動還原上次輸入的生日與結果 =====
+(function restoreFromStorage() {
+  const saved = localStorage.getItem('dogBirthdate');
+  if (!saved) return;
+
+  const input = document.getElementById('birthdate');
+  input.value = saved;
+
+  // 自動重新執行換算以還原結果
+  const birthDate = new Date(saved);
+  const today     = new Date();
+  if (birthDate > today) return;
+
+  const ageResult  = calcAge(birthDate, today);
+  const ageInYears = ageResult.totalDays / 365.25;
+  if (ageInYears < 0.01) return;
+
+  const humanAge = 16 * Math.log(ageInYears) + 31;
+  if (humanAge < 0) return;
+
+  renderResult(ageResult, humanAge);
+})();
+
 // ===== 換算主函式 =====
 function calculate() {
   const birthdateInput = document.getElementById('birthdate').value;
@@ -51,6 +74,9 @@ function calculate() {
 
   // 顯示結果
   renderResult(ageResult, humanAge);
+
+  // ===== [localStorage] 儲存生日與換算結果 =====
+  localStorage.setItem('dogBirthdate', birthdateInput);
 }
 
 // ===== 計算年齡細節 =====
